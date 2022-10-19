@@ -45,3 +45,17 @@ array.some((item) => {
   if (item === 2) return false;
   console.log(item, "return true;"); // 결과값 1, 3, 4 ,5
 });
+
+// 배열의 요소 유무 판별
+[2, 5, 8, 1, 4].some((item) => item > 10); // false
+[12, 5, 8, 1, 4].some((item) => item > 10); // true
+
+// 값이 배열의 요소에 존재하는지 확인
+const fruits = ["apple", "banana", "mango", "guava"];
+
+const checkAvailability = (array, value) => {
+  return array.some((item) => item === value);
+};
+
+console.log(checkAvailability(fruits, "banana"), "바나나"); // true
+console.log(checkAvailability(fruits, "nobody"), "노바디"); // false
