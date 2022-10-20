@@ -15,8 +15,9 @@
  * 3. 새번째 parameter(Optional), array = 배열 자체
  *
  * ✨. forEach()나, map()에서 지원하지 않는 break; 기능을 활용하기 위해서도 사용할 수 있다.
- * https://blog.outsider.ne.kr/847#:~:text=some()%EC%9D%80%20%EC%A1%B0%EA%B1%B4%EC%9D%B4,%EC%9D%98%20%EC%9A%A9%EB%8F%84%EC%97%90%EB%8F%84%20%EB%A7%9E%EC%95%84%EB%B3%B4%EC%9D%B8%EB%8B%A4.
  * https://pro-jm.tistory.com/m/42
+ * https://blog.outsider.ne.kr/847#:~:text=some()%EC%9D%80%20%EC%A1%B0%EA%B1%B4%EC%9D%B4,%EC%9D%98%20%EC%9A%A9%EB%8F%84%EC%97%90%EB%8F%84%20%EB%A7%9E%EC%95%84%EB%B3%B4%EC%9D%B8%EB%8B%A4.
+ * https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/some
  *
  * 🧨. 참고
  * some()을 사용함으로 불필요한 순행을 회피할 수 있는 break; 기능을 얻을 순 있지만 some()의 원래 목적과는 다르다.
@@ -56,6 +57,25 @@ const fruits = ["apple", "banana", "mango", "guava"];
 const checkAvailability = (array, value) => {
   return array.some((item) => item === value);
 };
-
 console.log(checkAvailability(fruits, "banana"), "바나나"); // true
 console.log(checkAvailability(fruits, "nobody"), "노바디"); // false
+
+// 모든 값을 boolean으로 변환
+const TRUTHY_VALUES = [true, "true", 1];
+
+const getBoolean = (parameter) => {
+  let value = parameter;
+
+  if (typeof value === "string") {
+    // toLowerCase() = 문자열을 소문자로 변환해 반환한다.
+    // trim() = 문자열 양 끝의 고백을 제거한다.
+    value = value.toLowerCase().trim();
+  }
+
+  return TRUTHY_VALUES.some((item) => item === value);
+};
+
+console.log(getBoolean(false)); // false
+console.log(getBoolean("false")); // false
+console.log(getBoolean(1)); // true
+console.log(getBoolean("true")); // true
